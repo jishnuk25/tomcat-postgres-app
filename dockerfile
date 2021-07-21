@@ -1,3 +1,5 @@
 FROM tomcat
 
-ADD target/LoginWebApp.war /usr/local/tomcat/webapps/LoginWebApp.war
+ADD target/*.war /usr/share/tomcat/webapps/
+
+EXPOSE 8080
