@@ -1,5 +1,9 @@
-FROM tomcat
+FROM tomcat:8.0-alpine
 
-ADD target/*.war /usr/share/tomcat/webapps/
+LABEL maintainer="jishnu.k"
 
-EXPOSE 8080
+ADD target/*.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080 3306
+
+CMD [ "catalina.sh", "run" ]
