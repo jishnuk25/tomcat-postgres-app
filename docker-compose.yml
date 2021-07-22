@@ -4,8 +4,8 @@ services:
     
 
   webapp:
-      container_name: LoginWebApp
-      image: LoginWebApp
+      container_name: loginwebapp
+      image: loginwebapp
       build:
         context: .
         dockerfile: Dockerfile
