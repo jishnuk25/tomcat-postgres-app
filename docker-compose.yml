@@ -12,4 +12,5 @@ services:
       ports:
        - "5000:8080"
        - "3306:3306"
-      volumes: ./logs:/usr/local/tomcat/logs
+      volumes:
+       - ./logs:/usr/local/tomcat/logs
