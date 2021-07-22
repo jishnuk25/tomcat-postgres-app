@@ -11,6 +11,6 @@ services:
         dockerfile: Dockerfile
       ports:
        - "5000:8080"
-       - ":3306"
+       - "3306"
       volumes:
        - ./logs:/usr/local/tomcat/logs
