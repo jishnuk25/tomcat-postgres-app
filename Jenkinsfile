@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage("Checkout") {
             steps {
-                git url:'https://github.com/jishnuk25/Java-Mysql-simple-Login-Web-application.git' credentialsId:'00548fae-616-47bf-a7f0-5add59ab5ded'
+                git url:'https://github.com/jishnuk25/Java-Mysql-simple-Login-Web-application.git', credentialsId:'00548fae-616-47bf-a7f0-5add59ab5ded'
             }
 
         }
