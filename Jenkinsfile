@@ -12,7 +12,7 @@ pipeline {
     environment {
         PATH = "/usr/share/maven/bin:$PATH"
     }
-    
+
     stages {
         stage("Checkout") {
             steps {
@@ -26,11 +26,13 @@ pipeline {
         }
         stage("Code quality") {
             steps {
-                try {
-                    sh "mvn sonar:sonar"
-                }
-                catch(error) {
-                    echo "The sonar server could not be reached ${error}"
+                script {
+                    try {
+                        sh "mvn sonar:sonar"
+                    }
+                    catch(error) {
+                        echo "The sonar server could not be reached ${error}"
+                    }
                 }
             }
         }
