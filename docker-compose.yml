@@ -9,8 +9,8 @@ services:
       build:
         context: .
         dockerfile: Dockerfile
-        volumes:
-         - ./logs:/usr/local/tomcat/logs
+      volumes:
+       - ./logs:/usr/local/tomcat/logs
       network_mode: "host"
       restart: on-failure
       depends_on:
