@@ -24,6 +24,11 @@ pipeline {
                 sh "mvn clean install"
             }
         }
+        stage("compose-up") {
+            steps {
+                sh "docker-compose up --build"
+            }
+        }
         stage("Code quality") {
             steps {
                 script {
@@ -32,6 +37,7 @@ pipeline {
                     }
                     catch(error) {
                         echo "The sonar server could not be reached ${error}"
+                        currentBuild.result = 'ABORTED'
                     }
                 }
             }
