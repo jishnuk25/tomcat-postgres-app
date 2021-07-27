@@ -13,12 +13,3 @@ services:
        - ./logs:/usr/local/tomcat/logs
       network_mode: "host"
       restart: on-failure
-      depends_on:
-       - sonarqube
-  
-  sonarqube:
-      build:
-        context: sonarqube/
-        dockerfile: Dockerfile
-      container_name: sonarqube
-      network_mode: "host"
