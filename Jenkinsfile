@@ -1,5 +1,7 @@
 def CONTAINER_NAME = "loginwebapp"
 def CONTAINER_TAG = "latest"
+def DOCKER_HUB_USER = "25795"
+def HTTP_PORT = "8080"
 
 pipeline {
 
@@ -39,6 +41,11 @@ pipeline {
                 }
             }
         }
+        stage("Deploy") {
+            steps{
+                deploy(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
+            }
+        }
     }
 }
 
@@ -60,4 +67,10 @@ def imagePush(containerName, tag, dockerUser, dockerPassword) {
     sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
     sh "docker push $dockerUser/$containerName:$tag"
     echo "${containerName}:${tag} pushed to Docker Hub successfully"
+}
+
+def deploy(containerName, tag, dockerHubUser, httpPort) {
+    sh "docker pull $dockerHubUser/$containerName:$tag"
+    sh "docker run -rm -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
+    echo "${containerName} startd on port: ${httpPort} (http)"
 }
