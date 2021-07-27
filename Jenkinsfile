@@ -51,7 +51,7 @@ def imagePrune(containerName) {
 }
 
 def imageBuild(containerName, tag) {
-    sh "docker build -t $containerName:$tag --pull --no-cache ."
+    sh "docker build -t $containerName:$tag -t $containerName --pull --no-cache ."
     echo "Image ${containerName}:${tag} "
 }
 
