@@ -73,6 +73,6 @@ def imagePush(containerName, tag, dockerUser, dockerPassword) {
 
 def deploy(containerName, tag, dockerHubUser, httpPort) {
     sh "docker pull $dockerHubUser/$containerName:$tag"
-    sh "docker run -rm -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
+    sh "docker run --rm -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
     echo "${containerName} startd on port: ${httpPort} (http)"
 }
