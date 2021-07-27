@@ -1,4 +1,4 @@
-def CONTAINER_NAME = "Loginwebapp"
+def CONTAINER_NAME = "loginwebapp"
 def CONTAINER_TAG = "latest"
 
 pipeline {
