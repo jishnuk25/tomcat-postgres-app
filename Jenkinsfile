@@ -43,7 +43,9 @@ pipeline {
         }
         stage("Deploy") {
             steps{
+                script {
                 deploy(CONTAINER_NAME, CONTAINER_TAG, DOCKER_HUB_USER, HTTP_PORT)
+                }
             }
         }
     }
