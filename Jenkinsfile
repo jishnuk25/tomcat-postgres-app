@@ -70,8 +70,8 @@ def imageBuild(containerName, tag) {
 }
 
 def imagePush(containerName, tag, dockerUser, dockerPassword) {
-    sh('docker login -u $dockerUser -p $dockerPassword')
-    sh('docker tag $containerName:$tag $dockerUser/$containerName:$tag')
+    sh "'docker login -u $dockerUser -p $dockerPassword"
+    sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
     sh "docker push $dockerUser/$containerName:$tag"
     echo "${containerName}:${tag} pushed to Docker Hub successfully"
 }
