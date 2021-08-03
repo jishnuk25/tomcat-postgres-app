@@ -1,7 +1,7 @@
-def CONTAINER_NAME = 'loginwebapp'
-def CONTAINER_TAG = 'latest'
-def DOCKER_HUB_USER = '25795'
-def HTTP_PORT = '8080'
+def CONTAINER_NAME = "loginwebapp"
+def CONTAINER_TAG = "latest"
+def DOCKER_HUB_USER = "25795"
+def HTTP_PORT = "8080"
 
 pipeline {
 
