@@ -65,8 +65,8 @@ def imagePrune(containerName) {
 }
 
 def imageBuild(containerName, tag) {
-    sh 'docker build -t $containerName:$tag -t $containerName --pull --no-cache .'
-    echo "Image ${containerName}:${tag} "
+    sh "docker build -t $containerName:$tag -t $containerName --pull --no-cache ."
+    echo "Image ${containerName}:${tag} built successfully"
 }
 
 def imagePush(containerName, tag, dockerUser, dockerPassword) {
