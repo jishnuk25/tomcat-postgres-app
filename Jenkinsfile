@@ -1,7 +1,7 @@
-def CONTAINER_NAME = "loginwebapp"
-def CONTAINER_TAG = "latest"
-def DOCKER_HUB_USER = "25795"
-def HTTP_PORT = "8080"
+def CONTAINER_NAME = 'loginwebapp'
+def CONTAINER_TAG = 'latest'
+def DOCKER_HUB_USER = '25795'
+def HTTP_PORT = '8080'
 
 pipeline {
 
@@ -70,7 +70,7 @@ def imageBuild(containerName, tag) {
 }
 
 def imagePush(containerName, tag, dockerUser, dockerPassword) {
-    sh "'docker login -u $dockerUser -p $dockerPassword"
+    sh "docker login -u $dockerUser -p $dockerPassword"
     sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
     sh "docker push $dockerUser/$containerName:$tag"
     echo "${containerName}:${tag} pushed to Docker Hub successfully"
