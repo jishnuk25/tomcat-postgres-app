@@ -24,6 +24,11 @@ pipeline {
                 sh "mvn clean install"
             }
         }
+        stage("Archive artifacts") {
+            steps{
+                archiveArtifacts artifacts: 'target/*.war', followSymlinks: false, onlyIfSuccessful: true
+            }
+        }
         stage("Image prune") {
             steps {
             imagePrune(CONTAINER_NAME)
@@ -60,19 +65,19 @@ def imagePrune(containerName) {
 }
 
 def imageBuild(containerName, tag) {
-    sh "docker build -t $containerName:$tag -t $containerName --pull --no-cache ."
+    sh 'docker build -t $containerName:$tag -t $containerName --pull --no-cache .'
     echo "Image ${containerName}:${tag} "
 }
 
 def imagePush(containerName, tag, dockerUser, dockerPassword) {
-    sh "docker login -u $dockerUser -p $dockerPassword"
-    sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
-    sh "docker push $dockerUser/$containerName:$tag"
+    sh 'docker login -u $dockerUser -p $dockerPassword'
+    sh 'docker tag $containerName:$tag $dockerUser/$containerName:$tag'
+    sh 'docker push $dockerUser/$containerName:$tag'
     echo "${containerName}:${tag} pushed to Docker Hub successfully"
 }
 
 def deploy(containerName, tag, dockerHubUser, httpPort) {
-    sh "docker pull $dockerHubUser/$containerName:$tag"
-    sh "docker run --rm -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
+    sh 'docker pull $dockerHubUser/$containerName:$tag'
+    sh 'docker run --rm -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag'
     echo "${containerName} startd on port: ${httpPort} (http)"
 }
