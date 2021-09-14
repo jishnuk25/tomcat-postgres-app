@@ -5,8 +5,8 @@
  
  String password = request.getParameter("password"); 
  
- Class.forName ("com.mysql.jdbc.Driver"); 
- Connection con = DriverManager.getConnection("jdbc:mysql://18.220.79.128:3306/sample", "Admin", "Admin@777");
+ Class.forName ("org.postgresql.Driver"); 
+ Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/sample", "Admin", "Admin@777");
  Statement st = con.createStatement(); 
  ResultSet rs; 
  rs = st.executeQuery("select * from USER where username='" + userName + "' and password='" + password + "'");

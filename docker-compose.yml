@@ -1,7 +1,5 @@
 version: '3.9'
-
-services: 
-    
+services:
 
   webapp:
       container_name: loginwebapp
@@ -10,6 +8,26 @@ services:
         context: .
         dockerfile: Dockerfile
       volumes:
-       - ./logs:/usr/local/tomcat/logs
-      network_mode: "host"
+        - ./logs:/usr/local/tomcat/logs
+      networks:
+        - mynetwork
       restart: on-failure
+      depends_on: 
+        - postgres
+  postgres:
+      container_name: postgres_db
+      image: postgres:11-alpine
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_PASSWORD: "Admin@777"
+        POSTGRES_DB: "sample"
+        PGPORT: "5432"
+        POSTGRES_USER: "Admin"
+      restart: "on-failure"
+      networks: 
+        - mynetwork
+
+networks: 
+  mynetwork:
+    driver: bridge

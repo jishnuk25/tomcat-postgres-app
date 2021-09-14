@@ -1,4 +1,4 @@
-def CONTAINER_NAME = 'loginwebapp'
+def CONTAINER_NAME = 'loginapp'
 def CONTAINER_TAG = 'latest'
 def DOCKER_HUB_USER = '25795'
 def HTTP_PORT = '8080'
@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage("Checkout") {
             steps {
-                git url:'https://github.com/jishnuk25/Java-Mysql-simple-Login-Web-application.git', credentialsId:'00548fae-616-47bf-a7f0-5add59ab5ded'
+                git url:'https://github.com/jishnuk25/tomcat-postgres-app.git', credentialsId:'00548fae-616-47bf-a7f0-5add59ab5ded'
             }
         }
         stage("Build") {
@@ -79,5 +79,5 @@ def imagePush(containerName, tag, dockerUser, dockerPassword) {
 def deploy(containerName, tag, dockerHubUser, httpPort) {
     sh "docker pull $dockerHubUser/$containerName:$tag"
     sh "docker run --rm -d -p $httpPort:$httpPort --name $containerName $dockerHubUser/$containerName:$tag"
-    echo "${containerName} startd on port: ${httpPort} (http)"
+    echo "${containerName} started on port: ${httpPort} (http)"
 }

@@ -4,6 +4,6 @@ LABEL maintainer="jishnu.k"
 
 ADD target/*.war /usr/local/tomcat/webapps/
 
-EXPOSE 8080 3306
+EXPOSE 8080
 
 CMD [ "catalina.sh", "run" ]
